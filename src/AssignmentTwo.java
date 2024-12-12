@@ -1,14 +1,14 @@
 public class AssignmentTwo {
-    public static void main(String[] args) {
+    public static void main(String[] args){
     }
 
-    public void partThree() {
+    public void partThree(){
     }
 
-    public void partFourA() {
+    public void partFourA(){
     }
 
-    public void partFourB() {
+    public void partFourB(){
     }
 
     public void partFive(){
@@ -16,7 +16,7 @@ public class AssignmentTwo {
 
     public void partSix(){
     }
-    
+
     public void partSeven() {
     }
 }
