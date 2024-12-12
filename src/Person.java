@@ -1,4 +1,4 @@
-public class Person {
+public abstract class Person {
     private String firstName;
     private String lastName;
     private int age;
@@ -52,4 +52,6 @@ public class Person {
         this.age = newAge;
         System.out.printf("Changing age into: %d", newAge);
     }  
+
+    public abstract void selfIntroduce();
 }

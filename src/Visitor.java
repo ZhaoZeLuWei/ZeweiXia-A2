@@ -1,8 +1,11 @@
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 
 public class Visitor extends Person {
     private LocalDateTime enterTime;
     private LocalDateTime exitTime;
+    private boolean isInPark = false;
+    public static SimpleDateFormat DF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public Visitor(String FirstName,String LastName,int Age,LocalDateTime enterTime,LocalDateTime exitTime) {
         super(FirstName, LastName, Age);
@@ -16,12 +19,16 @@ public class Visitor extends Person {
         this.exitTime = null;
     }
 
-    public LocalDateTime getEnterTime() {
-        return this.enterTime;
+    public String getEnterTime() {
+        return DF.format(this.enterTime);
     }
 
-    public LocalDateTime getExitTime() {
-        return this.exitTime;
+    public String getExitTime() {
+        return DF.format(this.exitTime);
+    }
+
+    public boolean getIsInPark() {
+        return this.isInPark;
     }
 
     public void setEnterTime(LocalDateTime newEnterTime) {
@@ -32,6 +39,7 @@ public class Visitor extends Person {
             throw new IllegalArgumentException("Cannot enter future time");
         }
         this.enterTime = newEnterTime;
+        this.isInPark = true;
         System.out.printf("New enter time set: " + newEnterTime);
     }
 
@@ -40,7 +48,17 @@ public class Visitor extends Person {
             throw new IllegalArgumentException("Can't enter a null value");
         }
         this.exitTime = newExitTime;
+        this.isInPark = false;
         System.out.printf("New exit time set: " + newExitTime);
     }
 
+    @Override
+    public void selfIntroduce() {
+        System.out.printf("Name: %s",this.getName());
+        System.out.printf("Age: %d",this.getAge());
+        System.out.printf("Enter Time: %s",DF.format(this.enterTime));
+        if(!this.isInPark) {
+            System.out.printf("Exit Time: %s",DF.format(this.exitTime));
+        }
+    }    
 }

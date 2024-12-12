@@ -45,5 +45,11 @@ public class Employee extends Person {
         System.out.printf("Employee position set to: %s",newPosition);
     } 
 
-
+    @Override
+    public void selfIntroduce() {
+        System.out.printf("Name: %s",this.getName());
+        System.out.printf("Age: %d",this.getAge());
+        System.out.printf("Employee ID: %d",this.employeeID);
+        System.out.printf("Position: %s",this.position);
+    }
 }
