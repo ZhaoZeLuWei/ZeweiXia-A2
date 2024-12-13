@@ -79,20 +79,28 @@ public class Ride implements RideInterface {
             throw new IllegalArgumentException("Please provide a visitor");
         }
         this.waitingLine.add(visitor);
-        System.out.printf("Visitor: %s add success!\n", visitor.getName());
+        System.out.printf("Visitor: %s add into Waiting Queue success!\n", visitor.getName());
     }
 
-    //Part3 remove a visitor from the waiting queue
+    //Part3 remove a visitor from the waiting queue(if they want to join the line or not)
     @Override
-    public void removeVisitorFromQueue(){
+    public void removeVisitorFromQueue(Visitor v){
+        boolean found = false;
         if(this.waitingLine.isEmpty()) {
             System.out.println("No visitor is in the waiting line! Can't remove.");
             throw new IllegalArgumentException("No visitor in the queue!");
         }
-        Visitor getVisitor = this.waitingLine.peek();
-        this.waitingLine.poll();
-        System.out.printf("Visitor: %s remove success!\n",getVisitor.getName());
-        
+        for (Visitor visitor : this.waitingLine) {
+            if(visitor.equals(v)) {
+                this.waitingLine.remove(v);
+                System.out.printf("Visitor: %s remove form Queue success!\n",v.getName());
+                found = true;
+                return;
+            }
+        }
+        if(!found) {
+            System.out.printf("Not found this visitor: %s in the waiting line.\n", v.getName());
+        }  
     };
 
     //Part3 print the waiting queue
@@ -100,7 +108,7 @@ public class Ride implements RideInterface {
     public void printQueue(){
         Iterator<Visitor> printQ = this.waitingLine.iterator();
         if(this.waitingLine.isEmpty()) {
-            System.out.println("No visitor is in the waiting line! Print failed!");
+            System.out.println("No visitor is in the waiting line!");
             return;
         }
         System.out.println("The following visitors are showing below.\n");
@@ -118,21 +126,28 @@ public class Ride implements RideInterface {
 
     //Part4A add a visitor to the ride history list
     @Override
-    public void addVisitorToHistory(Visitor addV){
-        if(addV == null) {
-            System.out.println("Input null, please input a visitor object.");
-            throw new IllegalArgumentException("Input object NULL");
+    public void addVisitorToHistory(){
+        if(this.waitingLine.isEmpty()) {
+            System.out.println("No visitor is waiting.");
+            throw new IllegalArgumentException("No visitor in the queue!");
         }
-        this.rideHistory.add(addV);
-        System.out.printf("Add a visitor: %s to the ride history list SUCCESS!\n", addV.getName());
+        Visitor addHistory = this.waitingLine.poll();
+        this.rideHistory.add(addHistory);
+        System.out.printf("Add a visitor: %s to the ride history list SUCCESS!\n", addHistory.getName());
     };
 
     //Part4A check a visiter is in the ride history or not
     @Override
     public void checkVisitorFromHistory(Visitor checkVisitor){
         boolean found = false;
+        if(this.rideHistory.isEmpty()) {
+            System.out.println("Empty list, no need to check.");
+            throw new IllegalArgumentException("No visitor in the queue!");
+        }
         for(Visitor v : this.rideHistory) {
-            if (v == checkVisitor) {
+            //I use v == checkVisitor to check two object is the same or not is a wrong way
+            //Use equals() to check is the correct way
+            if (v.equals(checkVisitor)) {
                 System.out.printf("Visitor: %s is already in the ride history.\n", checkVisitor.getName());
                 found = true;
                 break;
