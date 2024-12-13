@@ -3,8 +3,8 @@ interface RideInterface {
     void removeVisitorFromQueue();
     void printQueue();
     void runOneCycle();
-    void addVisitorToHistory();
-    void checkVisitorFromHistory();
+    void addVisitorToHistory(Visitor visitor);
+    void checkVisitorFromHistory(Visitor checkVisitor);
     void numberOfVisitors();
     void printRideHistory();
 }

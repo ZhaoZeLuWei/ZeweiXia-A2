@@ -47,6 +47,9 @@ public class Visitor extends Person {
         if(newExitTime == null) {
             throw new IllegalArgumentException("Can't enter a null value");
         }
+        if (newExitTime.isAfter(this.enterTime)) {
+            throw new IllegalArgumentException("Exit time cannot be before enter time");
+        }
         this.exitTime = newExitTime;
         this.isInPark = false;
         System.out.printf("New exit time set: " + newExitTime);
