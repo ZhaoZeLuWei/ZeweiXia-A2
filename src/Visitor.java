@@ -1,11 +1,11 @@
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Visitor extends Person {
     private LocalDateTime enterTime;
     private LocalDateTime exitTime;
     private boolean isInPark = false;
-    public static SimpleDateFormat DF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static DateTimeFormatter DF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public Visitor(String FirstName,String LastName,int Age,LocalDateTime enterTime,LocalDateTime exitTime) {
         super(FirstName, LastName, Age);
@@ -20,11 +20,11 @@ public class Visitor extends Person {
     }
 
     public String getEnterTime() {
-        return DF.format(this.enterTime);
+        return this.enterTime.format(DF);
     }
 
     public String getExitTime() {
-        return DF.format(this.exitTime);
+        return this.exitTime.format(DF);
     }
 
     public boolean getIsInPark() {

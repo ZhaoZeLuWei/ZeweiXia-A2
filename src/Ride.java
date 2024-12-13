@@ -75,6 +75,7 @@ public class Ride implements RideInterface {
             throw new IllegalArgumentException("Please provide a visitor");
         }
         this.waitingLine.add(visitor);
+        System.out.printf("Visitor: %s add success!\n", visitor.getName());
     }
 
     @Override
@@ -82,14 +83,20 @@ public class Ride implements RideInterface {
         if(this.waitingLine.isEmpty()) {
             throw new IllegalArgumentException("No visitor in the queue!");
         }
+        Visitor getVisitor = this.waitingLine.peek();
         this.waitingLine.poll();
+        System.out.printf("Visitor: %s remove success!\n",getVisitor.getName());
+        
     };
 
     @Override
     public void printQueue(){
         Iterator<Visitor> printQ = this.waitingLine.iterator();
+        System.out.println("The following visitors are showing below.\n");
         while(printQ.hasNext()){
-            System.out.println(printQ.next());
+            Visitor getV = printQ.next();
+            getV.selfIntroduce();
+            System.out.println("\n");
         }
     };
 
