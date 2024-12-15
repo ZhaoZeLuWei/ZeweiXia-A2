@@ -1,9 +1,8 @@
-import java.util.Collection;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Iterator;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class Ride implements RideInterface {
     private String rideName;
@@ -99,7 +98,8 @@ public class Ride implements RideInterface {
             throw new IllegalArgumentException("Please provide a visitor");
         }
         this.waitingLine.add(visitor);
-        System.out.printf("Visitor: %s add into Waiting Queue success!\n", visitor.getName());
+        visitor.setEnterTime(LocalDateTime.now());
+        System.out.printf("\nVisitor: %s add into Waiting Queue success!\n", visitor.getName());
     }
 
     //Part3 remove a visitor from the waiting queue(if they want to join the line or not)
@@ -177,7 +177,7 @@ public class Ride implements RideInterface {
                     break;
                 }
             }
-            System.out.println("Run one cycle with max seat visitors.");
+            System.out.printf("Run one cycle with max seat: %d visitors.", this.maxSeat);
         }
         //如果队列人数小于最大人数，则根据实际人数进行遍历
         else {
@@ -205,8 +205,10 @@ public class Ride implements RideInterface {
         }
         //将等待队列中的第一个人加入到历史记录中,并移出等待队列
         Visitor addHistory = this.waitingLine.poll();
+        LocalDateTime exitTime = LocalDateTime.now().plusMinutes(10);
         this.rideHistory.add(addHistory);
-        System.out.printf("Add a visitor: %s to the ride history list SUCCESS!\n", addHistory.getName());
+        addHistory.setExitTime(exitTime);
+        System.out.printf("\nAdd a visitor: %s to the ride history list SUCCESS!\n", addHistory.getName());
     };
 
     //Part4A check a visiter is in the ride history or not

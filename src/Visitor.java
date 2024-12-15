@@ -7,10 +7,8 @@ public class Visitor extends Person {
     private boolean isInPark = false;
     public static DateTimeFormatter DF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    public Visitor(String FirstName,String LastName,int Age,LocalDateTime enterTime,LocalDateTime exitTime) {
+    public Visitor(String FirstName,String LastName,int Age) {
         super(FirstName, LastName, Age);
-        this.enterTime = enterTime;
-        this.exitTime = exitTime;
     } 
 
     public Visitor() {
@@ -40,19 +38,20 @@ public class Visitor extends Person {
         }
         this.enterTime = newEnterTime;
         this.isInPark = true;
-        System.out.printf("New enter time set: " + newEnterTime);
+        System.out.printf("\nNew enter time set: " + newEnterTime);
+        
     }
 
     public void setExitTime(LocalDateTime newExitTime) {
         if(newExitTime == null) {
             throw new IllegalArgumentException("Can't enter a null value");
         }
-        if (newExitTime.isAfter(this.enterTime)) {
+        if (newExitTime.isBefore(this.enterTime)) {
             throw new IllegalArgumentException("Exit time cannot be before enter time");
         }
         this.exitTime = newExitTime;
         this.isInPark = false;
-        System.out.printf("New exit time set: " + newExitTime);
+        System.out.printf("\nNew exit time set: " + newExitTime);
     }
 
     @Override

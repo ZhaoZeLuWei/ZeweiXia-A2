@@ -1,4 +1,3 @@
-import java.time.LocalDateTime;
 
 public class AssignmentTwo {
     public static void main(String[] args){
@@ -15,11 +14,11 @@ public class AssignmentTwo {
         Employee Bob = new Employee("Zewei","Xia",20,24517199,"operator");
         Ride rollerCoaster = new Ride("Roller Coaster",false,Bob,2);
         //Create a minimum of 5 visitors to the waiting queue
-        Visitor Nehemia = new Visitor("Nehemia", "Smith", 25, LocalDateTime.of(2024, 12, 13, 9, 0), LocalDateTime.of(2024, 12, 13, 17, 0));
-        Visitor Jason = new Visitor("Jason", "Lee", 30, LocalDateTime.of(2024, 12, 13, 10, 15), LocalDateTime.of(2024, 12, 13, 15, 30));
-        Visitor Jack = new Visitor("Jack", "Brown", 28, LocalDateTime.of(2024, 12, 13, 11, 0), LocalDateTime.of(2024, 12, 13, 18, 0));
-        Visitor Sharon = new Visitor("Sharon", "Davis", 22, LocalDateTime.of(2024, 12, 13, 8, 45), LocalDateTime.of(2024, 12, 13, 14, 0));
-        Visitor Benny = new Visitor("Benny", "Miller", 35, LocalDateTime.of(2024, 12, 13, 9, 30), LocalDateTime.of(2024, 12, 13, 16, 45));
+        Visitor Nehemia = new Visitor("Nehemia", "Smith", 25 );
+        Visitor Jason = new Visitor("Jason", "Lee", 30);
+        Visitor Jack = new Visitor("Jack", "Brown", 28);
+        Visitor Sharon = new Visitor("Sharon", "Davis", 22);
+        Visitor Benny = new Visitor("Benny", "Miller", 35);
         rollerCoaster.addVisitorToQueue(Nehemia);
         rollerCoaster.addVisitorToQueue(Jason);
         rollerCoaster.addVisitorToQueue(Jack);
@@ -37,11 +36,11 @@ public class AssignmentTwo {
         //Create an employee and Ride object
         Employee Bobby = new Employee("Zewei","Xia",20,24517199,"operator");
         Ride thunderstorm = new Ride("Thunderstorm",false,Bobby,4);
-        Visitor Nehemia = new Visitor("Nehemia", "Smith", 25, LocalDateTime.of(2024, 12, 13, 9, 0), LocalDateTime.of(2024, 12, 13, 17, 0));
-        Visitor Jason = new Visitor("Jason", "Lee", 30, LocalDateTime.of(2024, 12, 13, 10, 15), LocalDateTime.of(2024, 12, 13, 15, 30));
-        Visitor Jack = new Visitor("Jack", "Brown", 28, LocalDateTime.of(2024, 12, 13, 11, 0), LocalDateTime.of(2024, 12, 13, 18, 0));
-        Visitor Sharon = new Visitor("Sharon", "Davis", 22, LocalDateTime.of(2024, 12, 13, 8, 45), LocalDateTime.of(2024, 12, 13, 14, 0));
-        Visitor Benny = new Visitor("Benny", "Miller", 35, LocalDateTime.of(2024, 12, 13, 9, 30), LocalDateTime.of(2024, 12, 13, 16, 45));
+        Visitor Nehemia = new Visitor("Nehemia", "Smith", 25);
+        Visitor Jason = new Visitor("Jason", "Lee", 30);
+        Visitor Jack = new Visitor("Jack", "Brown", 28);
+        Visitor Sharon = new Visitor("Sharon", "Davis", 22);
+        Visitor Benny = new Visitor("Benny", "Miller", 35);
         thunderstorm.addVisitorToQueue(Nehemia);
         thunderstorm.addVisitorToQueue(Jason);
         thunderstorm.addVisitorToQueue(Jack);
@@ -66,11 +65,11 @@ public class AssignmentTwo {
         // Create a new Ride object
         Employee Bobby = new Employee("Zewei","Xia",20,24517199,"operator");
         Ride thunderstorm = new Ride("Thunderstorm",false,Bobby,4);
-        Visitor Nehemia = new Visitor("Nehemia", "Smith", 25, LocalDateTime.of(2024, 12, 13, 9, 0), LocalDateTime.of(2024, 12, 13, 9, 30));
-        Visitor Jason = new Visitor("Jason", "Lee", 30, LocalDateTime.of(2024, 12, 13, 10, 15), LocalDateTime.of(2024, 12, 13, 10, 45));
-        Visitor Jack = new Visitor("Jack", "Brown", 25, LocalDateTime.of(2024, 12, 13, 11, 0), LocalDateTime.of(2024, 12, 13, 11, 30));
-        Visitor Sharon = new Visitor("Sharon", "Davis", 35, LocalDateTime.of(2024, 12, 13, 8, 45), LocalDateTime.of(2024, 12, 13, 9, 45));
-        Visitor Benny = new Visitor("Benny", "Miller", 35, LocalDateTime.of(2024, 12, 13, 9, 30), LocalDateTime.of(2024, 12, 13, 10, 0));
+        Visitor Nehemia = new Visitor("Nehemia", "Smith", 25);
+        Visitor Jason = new Visitor("Jason", "Lee", 30);
+        Visitor Jack = new Visitor("Jack", "Brown", 25);
+        Visitor Sharon = new Visitor("Sharon", "Davis", 35);
+        Visitor Benny = new Visitor("Benny", "Miller", 35);
         thunderstorm.addVisitorToQueue(Nehemia);
         thunderstorm.addVisitorToQueue(Jason);
         thunderstorm.addVisitorToQueue(Jack);
@@ -98,16 +97,16 @@ public class AssignmentTwo {
         Employee Bobby = new Employee("Zewei","Xia",20,24517199,"operator");
         Ride thunderstorm = new Ride("Thunderstorm",false,Bobby,4);
         // The data creation with the help of AI tools
-        Visitor Sharon = new Visitor("Sharon", "Davis", 35, LocalDateTime.of(2024, 12, 13, 8, 45), LocalDateTime.of(2024, 12, 13, 9, 45));
-        Visitor Nehemia = new Visitor("Nehemia", "Smith", 25, LocalDateTime.of(2024, 12, 13, 9, 0), LocalDateTime.of(2024, 12, 13, 9, 30));
-        Visitor Benny = new Visitor("Benny", "Miller", 35, LocalDateTime.of(2024, 12, 13, 9, 30), LocalDateTime.of(2024, 12, 13, 10, 0));
-        Visitor Jason = new Visitor("Jason", "Lee", 30, LocalDateTime.of(2024, 12, 13, 10, 15), LocalDateTime.of(2024, 12, 13, 10, 45));
-        Visitor Jack = new Visitor("Jack", "Brown", 25, LocalDateTime.of(2024, 12, 13, 11, 0), LocalDateTime.of(2024, 12, 13, 11, 30));
-        Visitor Emily = new Visitor("Emily", "Taylor", 25, LocalDateTime.of(2024, 12, 13, 12, 0), LocalDateTime.of(2024, 12, 13, 12, 45));
-        Visitor Chris = new Visitor("Chris", "Wilson", 22, LocalDateTime.of(2024, 12, 13, 13, 30), LocalDateTime.of(2024, 12, 13, 14, 15));
-        Visitor Lucy = new Visitor("Lucy", "Johnson", 28, LocalDateTime.of(2024, 12, 13, 14, 0), LocalDateTime.of(2024, 12, 13, 14, 30));
-        Visitor Samuel = new Visitor("Samuel", "Anderson", 35, LocalDateTime.of(2024, 12, 13, 16, 0), LocalDateTime.of(2024, 12, 13, 16, 40));
-        Visitor Olivia = new Visitor("Olivia", "Martinez", 27, LocalDateTime.of(2024, 12, 13, 17, 0), LocalDateTime.of(2024, 12, 13, 17, 45));
+        Visitor Sharon = new Visitor("Sharon", "Davis", 35);
+        Visitor Nehemia = new Visitor("Nehemia", "Smith", 25);
+        Visitor Benny = new Visitor("Benny", "Miller", 35);
+        Visitor Jason = new Visitor("Jason", "Lee", 30);
+        Visitor Jack = new Visitor("Jack", "Brown", 25);
+        Visitor Emily = new Visitor("Emily", "Taylor", 25);
+        Visitor Chris = new Visitor("Chris", "Wilson", 22);
+        Visitor Lucy = new Visitor("Lucy", "Johnson", 28);
+        Visitor Samuel = new Visitor("Samuel", "Anderson", 35);
+        Visitor Olivia = new Visitor("Olivia", "Martinez", 27);
         thunderstorm.addVisitorToQueue(Sharon);
         thunderstorm.addVisitorToQueue(Nehemia);
         thunderstorm.addVisitorToQueue(Benny);
