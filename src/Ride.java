@@ -10,6 +10,7 @@ public class Ride implements RideInterface {
     private boolean isRunning; 
     private Employee employeeInfo;
     private int maxSeat;
+    private int numOfCycles = 0;
     private LinkedList<Visitor> rideHistory = new LinkedList<Visitor>();
     private Queue<Visitor> waitingLine = new LinkedList<Visitor>();
 
@@ -50,6 +51,10 @@ public class Ride implements RideInterface {
 
     public Queue<Visitor> getWaitingLine() {
         return this.waitingLine;
+    }
+
+    public int getNumberOfCycles() {
+        return this.numOfCycles;
     }
 
     public void setRideName(String newRideName) {
@@ -141,9 +146,53 @@ public class Ride implements RideInterface {
         }
     };
 
+
+    //Part5 Run a ride cycle
     @Override
-    public void runOneCycle(){
-        
+    public void runOneCycle(Employee e){
+        //没有设置最大座位数，输出信息
+        if(this.maxSeat <= 0) {
+            System.out.println("This ride is unavaliable to run due to no seat.");
+            return;
+        }
+        //检查是否有员工可以进行操作
+        if(e == null) {
+            System.out.println("Need assigned a ride operator to run the ride.");
+            return;
+        }
+        //检查是否有人正在排队等待
+        if(this.waitingLine.isEmpty()) {
+            System.out.println("No visitor is waiting. Can't run this ride.");
+            return;
+        }
+        //查看队列中的具体情况并处理
+        int waitingTotal = this.waitingLine.size();
+        //如果队列很长，每次按照最大人数处理
+        if(waitingTotal >= this.maxSeat) {
+            for(int i = 0; i< this.maxSeat; i++) {
+                try {
+                    addVisitorToHistory();
+                } catch (Exception Except) {
+                    System.out.println("Fall to add visitor into history list." + Except.getMessage());
+                    break;
+                }
+            }
+            System.out.println("Run one cycle with max seat visitors.");
+        }
+        //如果队列人数小于最大人数，则根据实际人数进行遍历
+        else {
+            for(int i = 0; i < waitingTotal; i++) {
+                try {
+                    addVisitorToHistory();
+                } catch (Exception Except) {
+                    System.out.println("Fall to add visitor into history list." + Except.getMessage());
+                    break;
+                }
+            }
+            System.out.printf("Run one cycle with %d visitors.\n", waitingTotal);
+        }
+        //成功运行结束后增加一次运行记录
+        this.numOfCycles++;
     };
 
     //Part4A add a visitor to the ride history list
@@ -213,8 +262,6 @@ public class Ride implements RideInterface {
             System.out.println("No visitor in the ride history.");
             throw new IllegalArgumentException("No visitor in the queue!");
         }
-        //
         Collections.sort(this.rideHistory, new historyComparator());
     }
-
 }
