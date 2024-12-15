@@ -1,5 +1,5 @@
-import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Iterator;
@@ -271,14 +271,65 @@ public class Ride implements RideInterface {
 
     //Part6 Writing to a file
     public void exportRideHistory() throws IOException {
+        //firstly sort all the data in the history list
         this.compareAndSort();
+        if(this.rideHistory.isEmpty()) {
+            System.out.println("There is no history recorded in the list.");
+            throw new IllegalArgumentException("No visitor in the queue! Nothing can write into the file!");
+        }
+        //creat the name of the file
         String fileName = this.rideName + "HistoryList.csv";
+        //Use try-catch to handle the exception
         try(BufferedWriter bfw = new BufferedWriter(new FileWriter(fileName))) {
+            //use for-each iterator to write each visitor's history information into the file one line by line
             for(Visitor v: this.rideHistory) {
                 bfw.write(v.getName() + "," + v.getAge() + "," + v.getEnterTime() + "," + v.getExitTime() + "\n");
                 System.out.printf("\nWrite %s to the file success!",v.getName());
             }
+        } catch (IOException e) {
             System.out.println("Problem writing to the file" + fileName);
+            throw e;
+        }
+    }
+
+    //Part7 
+    public void importRideHistory() throws IOException {
+        //firstly find out the file we need;
+        String fileName = this.rideName + "HistoryList.csv";
+        File file = new File(fileName);
+        // if java can't find the file we need, throw an IOException
+        if(file.exists()) {
+            System.out.println("Now read the file and add all visitor to the ride history list.");
+        } else {
+            System.out.println("The file is not exist, please check.");
+            throw new IOException("Can't find the file, file name: " + fileName);
+        }
+        //use try-catch to read and write object into history
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        try(BufferedReader bfr = new BufferedReader(new FileReader(fileName))) {
+            String line = bfr.readLine();
+            while(line != null) {
+                //split the data into an array
+                String[] splitCheck = line.split(",");
+                //check the name format
+                if(!splitCheck[0].contains(" ")) {
+                    System.out.println("Name format is wrong.");
+                    throw new IllegalArgumentException("Name format is wrong, please check the csv file.");
+                }
+                //getName() return the full name, now I am making the full name into first name and last name
+                String[] name = splitCheck[0].split(" ");
+                //Create the new visitor object
+                Visitor readV = new Visitor(name[0],name[1], Integer.parseInt(splitCheck[1]));
+                readV.setEnterTime(LocalDateTime.parse(splitCheck[2],format));
+                readV.setExitTime(LocalDateTime.parse(splitCheck[3],format));
+                // add the visitor into the history list
+                this.rideHistory.add(readV);
+                System.out.printf("\nRead and add %s to the ride history list success!", splitCheck[0]);
+                //new line for next loop
+                line = bfr.readLine();
+            }
+        } catch(IOException e) {
+            System.out.println("\nRead file failure, detail: " + e.getMessage());
             throw e;
         }
     }

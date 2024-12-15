@@ -7,6 +7,7 @@ public class AssignmentTwo {
         assignment.partFourB();
         assignment.partFive();
         assignment.partSix();
+        assignment.partSeven();
     }
 
     public void partThree(){
@@ -144,11 +145,20 @@ public class AssignmentTwo {
         thunderstorm.addVisitorToQueue(Benny);
         thunderstorm.addVisitorToQueue(Jason);
         thunderstorm.addVisitorToQueue(Jack);
+        //let all visitors to ride the ride
         thunderstorm.runOneCycle(Bobby);
         thunderstorm.runOneCycle(Bobby);
+        //Export the ride history into a csv file
         thunderstorm.exportRideHistory();
     }
 
-    public void partSeven() {
+    public void partSeven() throws IOException {
+        System.out.println("\n=-=-=-=-=-=Part Seven Below=-=-=-=-=-=\n");
+        // Create a new Ride object
+        Employee Bobby = new Employee("Zewei","Xia",20,24517199,"operator");
+        Ride thunderstorm = new Ride("Thunderstorm",false,Bobby,4);
+        thunderstorm.importRideHistory();
+        thunderstorm.numberOfVisitors();
+        thunderstorm.printRideHistory();
     }
 }
