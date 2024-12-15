@@ -1,11 +1,12 @@
-
+import java.io.*;
 public class AssignmentTwo {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         AssignmentTwo assignment = new AssignmentTwo();
         assignment.partThree();
         assignment.partFourA();
         assignment.partFourB();
         assignment.partFive();
+        assignment.partSix();
     }
 
     public void partThree(){
@@ -128,7 +129,24 @@ public class AssignmentTwo {
         thunderstorm.printRideHistory();
     }
 
-    public void partSix(){
+    public void partSix() throws IOException{
+        System.out.println("=-=-=-=-=-=Part Six Below=-=-=-=-=-=");
+        // Create a new Ride object
+        Employee Bobby = new Employee("Zewei","Xia",20,24517199,"operator");
+        Ride thunderstorm = new Ride("Thunderstorm",false,Bobby,4);
+        Visitor Sharon = new Visitor("Sharon", "Davis", 35);
+        Visitor Nehemia = new Visitor("Nehemia", "Smith", 25);
+        Visitor Benny = new Visitor("Benny", "Miller", 35);
+        Visitor Jason = new Visitor("Jason", "Lee", 30);
+        Visitor Jack = new Visitor("Jack", "Brown", 25);
+        thunderstorm.addVisitorToQueue(Sharon);
+        thunderstorm.addVisitorToQueue(Nehemia);
+        thunderstorm.addVisitorToQueue(Benny);
+        thunderstorm.addVisitorToQueue(Jason);
+        thunderstorm.addVisitorToQueue(Jack);
+        thunderstorm.runOneCycle(Bobby);
+        thunderstorm.runOneCycle(Bobby);
+        thunderstorm.exportRideHistory();
     }
 
     public void partSeven() {

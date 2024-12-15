@@ -1,8 +1,10 @@
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Iterator;
 import java.util.Collections;
+import java.io.*;
 
 public class Ride implements RideInterface {
     private String rideName;
@@ -265,5 +267,19 @@ public class Ride implements RideInterface {
             throw new IllegalArgumentException("No visitor in the queue!");
         }
         Collections.sort(this.rideHistory, new historyComparator());
+    }
+
+    //Part6 Writing to a file
+    public void exportRideHistory() throws IOException {
+        this.compareAndSort();
+        String fileName = this.rideName + "HistoryList.csv";
+        try(BufferedWriter bfw = new BufferedWriter(new FileWriter(fileName))) {
+            for(Visitor v: this.rideHistory) {
+                bfw.write(v.getName() + "," + v.getAge() + "," + v.getEnterTime() + "," + v.getExitTime() + "\n");
+                System.out.printf("\nWrite %s to the file success!",v.getName());
+            }
+            System.out.println("Problem writing to the file" + fileName);
+            throw e;
+        }
     }
 }
