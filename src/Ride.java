@@ -1,6 +1,9 @@
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Iterator;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Ride implements RideInterface {
     private String rideName;
@@ -39,6 +42,14 @@ public class Ride implements RideInterface {
 
     public int getMaxSeat() {
         return this.maxSeat;
+    }
+
+    public LinkedList<Visitor> getRideHistory() {
+        return this.rideHistory;
+    }
+
+    public Queue<Visitor> getWaitingLine() {
+        return this.waitingLine;
     }
 
     public void setRideName(String newRideName) {
@@ -174,7 +185,7 @@ public class Ride implements RideInterface {
     //Part4A return the length of the list
     @Override
     public void numberOfVisitors(){
-        System.out.println(this.rideHistory.size());
+        System.out.printf("Today's visitor total number is: %d", this.rideHistory.size());
     };
 
     //part4A print the ride history one by one <USE Iterator>
@@ -187,12 +198,23 @@ public class Ride implements RideInterface {
         }
         //遍历输出
         Iterator<Visitor> forPrint = this.rideHistory.iterator();
-        System.out.println("Ride History:\n");
+        System.out.println("\nRide History:\n");
         while(forPrint.hasNext()) {
             Visitor v = forPrint.next();
             v.selfIntroduce();
             System.out.println("\n");
         }
     };
+
+    //Part4B sort the list by compare Age & Enter time
+    public void compareAndSort() {
+        //检查是否为空
+        if(this.rideHistory.isEmpty()) {
+            System.out.println("No visitor in the ride history.");
+            throw new IllegalArgumentException("No visitor in the queue!");
+        }
+        //
+        Collections.sort(this.rideHistory, new historyComparator());
+    }
 
 }

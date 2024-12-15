@@ -57,11 +57,11 @@ public class Visitor extends Person {
 
     @Override
     public void selfIntroduce() {
-        System.out.printf("Name: %s",this.getName());
-        System.out.printf("Age: %d",this.getAge());
-        System.out.printf("Enter Time: %s",DF.format(this.enterTime));
+        System.out.printf("Name: %s\t ",this.getName());
+        System.out.printf("Age: %d\t ",this.getAge());
+        System.out.printf("Enter Time: %s\t ",DF.format(this.enterTime));
         if(!this.isInPark) {
-            System.out.printf("Exit Time: %s",DF.format(this.exitTime));
+            System.out.printf("Exit Time: %s\t ",DF.format(this.exitTime));
         }
     }    
 }
