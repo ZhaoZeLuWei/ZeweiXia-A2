@@ -42,15 +42,17 @@ public class Ride implements RideInterface {
     }
 
     public void setRideName(String newRideName) {
-        if(newRideName != null) {
-            this.rideName = newRideName;
-            System.out.printf("Set new ride name:%s success!\n", newRideName);
-        } else {
+        //检查是否为空
+        if(newRideName == null) {
+            System.out.println("Ride name cannot be null!");
             throw new IllegalArgumentException("RideName cannot be null");
         }
+        this.rideName = newRideName;
+        System.out.printf("Set new ride name:%s success!\n", newRideName);
     }
 
     public void setRunning(boolean newRuning) {
+        //检查是否为空
         if(this.isRunning == newRuning) {
             throw new IllegalArgumentException(String.format("Ride is already %s", newRuning ? "running" : "not running"));
         }
@@ -58,6 +60,7 @@ public class Ride implements RideInterface {
     }
 
     public void setEmployee(Employee newEmployee) {
+        //检查是否为空
         if (newEmployee == null) {
             throw new IllegalArgumentException("RideName cannot be null");
         }
@@ -65,6 +68,7 @@ public class Ride implements RideInterface {
     }
 
     public void setMaxSeat(int newMaxSeat) {
+        //检查传入参数合法性
         if(newMaxSeat <= 0) {
             throw new IllegalArgumentException("Set seat number must be greater than 0");
         }
@@ -83,13 +87,17 @@ public class Ride implements RideInterface {
     }
 
     //Part3 remove a visitor from the waiting queue(if they want to join the line or not)
+    //作业文件说，队列中的人可以自行决定是否退出队伍。与加入到历史记录不同，这里是自行决定
+    //也就是说，这里需要删除指定的目标，而不是先进先出的顺序删除
     @Override
     public void removeVisitorFromQueue(Visitor v){
         boolean found = false;
+        //检查等待队列中是否有人在等待
         if(this.waitingLine.isEmpty()) {
             System.out.println("No visitor is in the waiting line! Can't remove.");
             throw new IllegalArgumentException("No visitor in the queue!");
         }
+        //使用for-each循环，如果找到目标就删除
         for (Visitor visitor : this.waitingLine) {
             if(visitor.equals(v)) {
                 this.waitingLine.remove(v);
@@ -98,6 +106,7 @@ public class Ride implements RideInterface {
                 return;
             }
         }
+        //经过遍历循环后未找到对象，输出错误信息
         if(!found) {
             System.out.printf("Not found this visitor: %s in the waiting line.\n", v.getName());
         }  
@@ -107,10 +116,12 @@ public class Ride implements RideInterface {
     @Override
     public void printQueue(){
         Iterator<Visitor> printQ = this.waitingLine.iterator();
+        //检查队列是否为空
         if(this.waitingLine.isEmpty()) {
             System.out.println("No visitor is in the waiting line!");
             return;
         }
+        //使用迭代器遍历队列
         System.out.println("The following visitors are showing below.\n");
         while(printQ.hasNext()){
             Visitor getV = printQ.next();
@@ -127,10 +138,12 @@ public class Ride implements RideInterface {
     //Part4A add a visitor to the ride history list
     @Override
     public void addVisitorToHistory(){
+        //检查等待队列是否为空
         if(this.waitingLine.isEmpty()) {
             System.out.println("No visitor is waiting.");
             throw new IllegalArgumentException("No visitor in the queue!");
         }
+        //将等待队列中的第一个人加入到历史记录中,并移出等待队列
         Visitor addHistory = this.waitingLine.poll();
         this.rideHistory.add(addHistory);
         System.out.printf("Add a visitor: %s to the ride history list SUCCESS!\n", addHistory.getName());
@@ -167,6 +180,12 @@ public class Ride implements RideInterface {
     //part4A print the ride history one by one <USE Iterator>
     @Override
     public void printRideHistory(){
+        //如果没有访客在历史记录中，直接输出特殊情况的信息
+        if(this.rideHistory.isEmpty()) {
+            System.out.println("No visitor in the ride history.");
+            return;
+        }
+        //遍历输出
         Iterator<Visitor> forPrint = this.rideHistory.iterator();
         System.out.println("Ride History:\n");
         while(forPrint.hasNext()) {
