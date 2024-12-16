@@ -1,10 +1,10 @@
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Iterator;
-import java.util.Collections;
-import java.io.*;
 
 public class Ride implements RideInterface {
     private String rideName;
@@ -12,8 +12,8 @@ public class Ride implements RideInterface {
     private Employee employeeInfo;
     private int maxSeat;
     private int numOfCycles = 0;
-    private LinkedList<Visitor> rideHistory = new LinkedList<Visitor>();
-    private Queue<Visitor> waitingLine = new LinkedList<Visitor>();
+    private LinkedList<Visitor> rideHistory = new LinkedList<>();
+    private Queue<Visitor> waitingLine = new LinkedList<>();
 
     public Ride(String RideName, boolean IsRunning, Employee EmployeeInfo, int MaxSeat) {
         this.rideName = RideName;
@@ -29,7 +29,7 @@ public class Ride implements RideInterface {
         this.maxSeat = 0;
     }
 
-    // Getter and Setter
+    // Getters
     public String getRideName() {
         return this.rideName;
     }
@@ -58,6 +58,7 @@ public class Ride implements RideInterface {
         return this.numOfCycles;
     }
 
+    //Setters
     public void setRideName(String newRideName) {
         //检查是否为空
         if(newRideName == null) {
@@ -90,6 +91,13 @@ public class Ride implements RideInterface {
             throw new IllegalArgumentException("Set seat number must be greater than 0");
         }
         this.maxSeat = newMaxSeat;
+    }
+
+    public void setNumOfCycle(int newCycle) {
+        if(newCycle <= 0 || newCycle > 40) {
+            System.out.printf("The cycle number must set in a range of 1-40");
+            throw new IllegalArgumentException("");
+        }
     }
 
     //Part3 Add a visitor into the waiting queue
@@ -140,7 +148,7 @@ public class Ride implements RideInterface {
             return;
         }
         //使用迭代器遍历队列
-        System.out.println("The following visitors are showing below.\n");
+        System.out.println("\nThe following visitors in the queue are showing below.\n");
         while(printQ.hasNext()){
             Visitor getV = printQ.next();
             getV.selfIntroduce();
@@ -215,11 +223,10 @@ public class Ride implements RideInterface {
 
     //Part4A check a visiter is in the ride history or not
     @Override
-    public void checkVisitorFromHistory(Visitor checkVisitor){
+    public boolean checkVisitorFromHistory(Visitor checkVisitor){
         boolean found = false;
         if(this.rideHistory.isEmpty()) {
             System.out.println("Empty list, no need to check.");
-            throw new IllegalArgumentException("No visitor in the queue!");
         }
         for(Visitor v : this.rideHistory) {
             //I use v == checkVisitor to check two object is the same or not is a wrong way
@@ -227,13 +234,14 @@ public class Ride implements RideInterface {
             if (v.equals(checkVisitor)) {
                 System.out.printf("Visitor: %s is already in the ride history.\n", checkVisitor.getName());
                 found = true;
-                break;
+                return found;
             }
         }
         if (!found) {
             System.out.printf("Visitor: %s is not in the ride history.\n", checkVisitor.getName());
         }
-    };
+        return found;
+    }
 
     //Part4A return the length of the list
     @Override
@@ -293,20 +301,19 @@ public class Ride implements RideInterface {
     }
 
     //Part7 
-    public void importRideHistory() throws IOException {
+    public void importRideHistory(String importFile) throws IOException {
         //firstly find out the file we need;
-        String fileName = this.rideName + "HistoryList.csv";
-        File file = new File(fileName);
-        // if java can't find the file we need, throw an IOException
-        if(file.exists()) {
-            System.out.println("Now read the file and add all visitor to the ride history list.");
-        } else {
-            System.out.println("The file is not exist, please check.");
-            throw new IOException("Can't find the file, file name: " + fileName);
+        File file = new File(importFile);
+        // if java can't find the file we need in this project, then break
+        if(!file.exists()) {
+            System.out.printf("The file is not exist. New file created: %s", importFile);
+            throw new IOException("Can't find the file, check the folder.");
         }
+        //if the file exists then continue working.
+        System.out.println("Now read the file and add all visitor to the ride history list.");
         //use try-catch to read and write object into history
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        try(BufferedReader bfr = new BufferedReader(new FileReader(fileName))) {
+        try(BufferedReader bfr = new BufferedReader(new FileReader(file))) {
             String line = bfr.readLine();
             while(line != null) {
                 //split the data into an array
@@ -322,6 +329,11 @@ public class Ride implements RideInterface {
                 Visitor readV = new Visitor(name[0],name[1], Integer.parseInt(splitCheck[1]));
                 readV.setEnterTime(LocalDateTime.parse(splitCheck[2],format));
                 readV.setExitTime(LocalDateTime.parse(splitCheck[3],format));
+                //Check if the visitor history is already in the ride history list.
+                boolean checkValue = this.checkVisitorFromHistory(readV);
+                if(checkValue == true) {
+                    continue;
+                }
                 // add the visitor into the history list
                 this.rideHistory.add(readV);
                 System.out.printf("\nRead and add %s to the ride history list success!", splitCheck[0]);

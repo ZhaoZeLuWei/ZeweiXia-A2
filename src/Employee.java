@@ -14,6 +14,7 @@ public class Employee extends Person {
         this.position = "NULL-position";
     }
 
+    //getter & setter
     public int getEmployeeID() {
         return this.employeeID;
     }
@@ -45,6 +46,7 @@ public class Employee extends Person {
         System.out.printf("Employee position set to: %s",newPosition);
     } 
 
+    //override the abstract method from person class - selfIntroduce abstract method
     @Override
     public void selfIntroduce() {
         System.out.printf("Name: %s",this.getName());

@@ -37,67 +37,67 @@ public class AssignmentTwo {
         System.out.println("=-=-=-=-=-=Part Four A Below=-=-=-=-=-=");
         //Create an employee and Ride object
         Employee Bobby = new Employee("Zewei","Xia",20,24517199,"operator");
-        Ride thunderstorm = new Ride("Thunderstorm",false,Bobby,4);
+        Ride thunderstormPart4A = new Ride("ThunderstormPart4A",false,Bobby,4);
         Visitor Nehemia = new Visitor("Nehemia", "Smith", 25);
         Visitor Jason = new Visitor("Jason", "Lee", 30);
         Visitor Jack = new Visitor("Jack", "Brown", 28);
         Visitor Sharon = new Visitor("Sharon", "Davis", 22);
         Visitor Benny = new Visitor("Benny", "Miller", 35);
-        thunderstorm.addVisitorToQueue(Nehemia);
-        thunderstorm.addVisitorToQueue(Jason);
-        thunderstorm.addVisitorToQueue(Jack);
-        thunderstorm.addVisitorToQueue(Sharon);
-        thunderstorm.addVisitorToQueue(Benny);
+        thunderstormPart4A.addVisitorToQueue(Nehemia);
+        thunderstormPart4A.addVisitorToQueue(Jason);
+        thunderstormPart4A.addVisitorToQueue(Jack);
+        thunderstormPart4A.addVisitorToQueue(Sharon);
+        thunderstormPart4A.addVisitorToQueue(Benny);
         //add a minimun of 5 visitors to the history list
-        thunderstorm.addVisitorToHistory();
-        thunderstorm.addVisitorToHistory();
-        thunderstorm.addVisitorToHistory();
-        thunderstorm.addVisitorToHistory();
-        thunderstorm.addVisitorToHistory();
+        thunderstormPart4A.addVisitorToHistory();
+        thunderstormPart4A.addVisitorToHistory();
+        thunderstormPart4A.addVisitorToHistory();
+        thunderstormPart4A.addVisitorToHistory();
+        thunderstormPart4A.addVisitorToHistory();
         //Check visitor Sharon is in the history list or not
-        thunderstorm.checkVisitorFromHistory(Sharon);
+        thunderstormPart4A.checkVisitorFromHistory(Sharon);
         //print the number of visitors in the history list
-        thunderstorm.numberOfVisitors();
+        thunderstormPart4A.numberOfVisitors();
         //print all visitors in the collection
-        thunderstorm.printRideHistory();
+        thunderstormPart4A.printRideHistory();
     }
 
     public void partFourB(){
         System.out.println("=-=-=-=-=-=Part Four B Below=-=-=-=-=-=");
         // Create a new Ride object
         Employee Bobby = new Employee("Zewei","Xia",20,24517199,"operator");
-        Ride thunderstorm = new Ride("Thunderstorm",false,Bobby,4);
+        Ride thunderstormPart4B = new Ride("ThunderstormPart4B",false,Bobby,4);
         Visitor Nehemia = new Visitor("Nehemia", "Smith", 25);
         Visitor Jason = new Visitor("Jason", "Lee", 30);
         Visitor Jack = new Visitor("Jack", "Brown", 25);
         Visitor Sharon = new Visitor("Sharon", "Davis", 35);
         Visitor Benny = new Visitor("Benny", "Miller", 35);
-        thunderstorm.addVisitorToQueue(Nehemia);
-        thunderstorm.addVisitorToQueue(Jason);
-        thunderstorm.addVisitorToQueue(Jack);
-        thunderstorm.addVisitorToQueue(Sharon);
-        thunderstorm.addVisitorToQueue(Benny);
+        thunderstormPart4B.addVisitorToQueue(Nehemia);
+        thunderstormPart4B.addVisitorToQueue(Jason);
+        thunderstormPart4B.addVisitorToQueue(Jack);
+        thunderstormPart4B.addVisitorToQueue(Sharon);
+        thunderstormPart4B.addVisitorToQueue(Benny);
         //add a minimum of 5 visitors to the history list
-        thunderstorm.addVisitorToHistory();
-        thunderstorm.addVisitorToHistory();
-        thunderstorm.addVisitorToHistory();
-        thunderstorm.addVisitorToHistory();
-        thunderstorm.addVisitorToHistory();
+        thunderstormPart4B.addVisitorToHistory();
+        thunderstormPart4B.addVisitorToHistory();
+        thunderstormPart4B.addVisitorToHistory();
+        thunderstormPart4B.addVisitorToHistory();
+        thunderstormPart4B.addVisitorToHistory();
         //print all visitors in the collcetion (befor sorting)
         System.out.println("The history list before sorting:\n");
-        thunderstorm.printRideHistory();
+        thunderstormPart4B.printRideHistory();
         //Sort the collection by Age firstly and the by enter time
-        thunderstorm.compareAndSort();
+        thunderstormPart4B.compareAndSort();
         //print all visitors in the collcetion (after been sorted)
         System.out.println("The history list after sorting:\n");
-        thunderstorm.printRideHistory();
+        thunderstormPart4B.printRideHistory();
     }
 
     public void partFive(){
         System.out.println("=-=-=-=-=-=Part Five Below=-=-=-=-=-=");
         // Create a new Ride object
         Employee Bobby = new Employee("Zewei","Xia",20,24517199,"operator");
-        Ride thunderstorm = new Ride("Thunderstorm",false,Bobby,4);
+        Ride thunderstormPart5 = new Ride("ThunderstormPart5",false,Bobby,4);
         // The data creation with the help of AI tools
         Visitor Sharon = new Visitor("Sharon", "Davis", 35);
         Visitor Nehemia = new Visitor("Nehemia", "Smith", 25);
@@ -109,56 +109,56 @@ public class AssignmentTwo {
         Visitor Lucy = new Visitor("Lucy", "Johnson", 28);
         Visitor Samuel = new Visitor("Samuel", "Anderson", 35);
         Visitor Olivia = new Visitor("Olivia", "Martinez", 27);
-        thunderstorm.addVisitorToQueue(Sharon);
-        thunderstorm.addVisitorToQueue(Nehemia);
-        thunderstorm.addVisitorToQueue(Benny);
-        thunderstorm.addVisitorToQueue(Jason);
-        thunderstorm.addVisitorToQueue(Jack);
-        thunderstorm.addVisitorToQueue(Emily);
-        thunderstorm.addVisitorToQueue(Chris);
-        thunderstorm.addVisitorToQueue(Lucy);
-        thunderstorm.addVisitorToQueue(Samuel);
-        thunderstorm.addVisitorToQueue(Olivia);
+        thunderstormPart5.addVisitorToQueue(Sharon);
+        thunderstormPart5.addVisitorToQueue(Nehemia);
+        thunderstormPart5.addVisitorToQueue(Benny);
+        thunderstormPart5.addVisitorToQueue(Jason);
+        thunderstormPart5.addVisitorToQueue(Jack);
+        thunderstormPart5.addVisitorToQueue(Emily);
+        thunderstormPart5.addVisitorToQueue(Chris);
+        thunderstormPart5.addVisitorToQueue(Lucy);
+        thunderstormPart5.addVisitorToQueue(Samuel);
+        thunderstormPart5.addVisitorToQueue(Olivia);
         //print all visitors in the queue
-        thunderstorm.printQueue();
+        thunderstormPart5.printQueue();
         //Run on cycle 
-        thunderstorm.runOneCycle(Bobby);
+        thunderstormPart5.runOneCycle(Bobby);
         //print the waiting queue after one cycle
-        thunderstorm.printQueue();
+        thunderstormPart5.printQueue();
         //print the history list after one cycle
-        thunderstorm.compareAndSort();
-        thunderstorm.printRideHistory();
+        thunderstormPart5.compareAndSort();
+        thunderstormPart5.printRideHistory();
     }
 
     public void partSix() throws IOException{
         System.out.println("=-=-=-=-=-=Part Six Below=-=-=-=-=-=");
         // Create a new Ride object
         Employee Bobby = new Employee("Zewei","Xia",20,24517199,"operator");
-        Ride thunderstorm = new Ride("Thunderstorm",false,Bobby,4);
+        Ride thunderstormPart6 = new Ride("ThunderstormPart6",false,Bobby,4);
         Visitor Sharon = new Visitor("Sharon", "Davis", 35);
         Visitor Nehemia = new Visitor("Nehemia", "Smith", 25);
         Visitor Benny = new Visitor("Benny", "Miller", 35);
         Visitor Jason = new Visitor("Jason", "Lee", 30);
         Visitor Jack = new Visitor("Jack", "Brown", 25);
-        thunderstorm.addVisitorToQueue(Sharon);
-        thunderstorm.addVisitorToQueue(Nehemia);
-        thunderstorm.addVisitorToQueue(Benny);
-        thunderstorm.addVisitorToQueue(Jason);
-        thunderstorm.addVisitorToQueue(Jack);
+        thunderstormPart6.addVisitorToQueue(Sharon);
+        thunderstormPart6.addVisitorToQueue(Nehemia);
+        thunderstormPart6.addVisitorToQueue(Benny);
+        thunderstormPart6.addVisitorToQueue(Jason);
+        thunderstormPart6.addVisitorToQueue(Jack);
         //let all visitors to ride the ride
-        thunderstorm.runOneCycle(Bobby);
-        thunderstorm.runOneCycle(Bobby);
+        thunderstormPart6.runOneCycle(Bobby);
+        thunderstormPart6.runOneCycle(Bobby);
         //Export the ride history into a csv file
-        thunderstorm.exportRideHistory();
+        thunderstormPart6.exportRideHistory();
     }
 
     public void partSeven() throws IOException {
         System.out.println("\n=-=-=-=-=-=Part Seven Below=-=-=-=-=-=\n");
         // Create a new Ride object
         Employee Bobby = new Employee("Zewei","Xia",20,24517199,"operator");
-        Ride thunderstorm = new Ride("Thunderstorm",false,Bobby,4);
-        thunderstorm.importRideHistory();
-        thunderstorm.numberOfVisitors();
-        thunderstorm.printRideHistory();
+        Ride thunderstormPart7 = new Ride("ThunderstormPart7",false,Bobby,4);
+        thunderstormPart7.importRideHistory("ThunderstormPart6HistoryList.csv");
+        thunderstormPart7.numberOfVisitors();
+        thunderstormPart7.printRideHistory();
     }
 }

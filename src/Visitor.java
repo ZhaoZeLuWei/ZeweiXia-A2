@@ -17,6 +17,7 @@ public class Visitor extends Person {
         this.exitTime = null;
     }
 
+    //getter & setter
     public String getEnterTime() {
         return this.enterTime.format(DF);
     }
@@ -54,6 +55,7 @@ public class Visitor extends Person {
         System.out.printf("\nNew exit time set: " + newExitTime);
     }
 
+    //override the abstract method from person class - selfIntroduce abstract method
     @Override
     public void selfIntroduce() {
         System.out.printf("Name: %s\t ",this.getName());

@@ -1,3 +1,4 @@
+//this is the person abstract class with one abstract method: selfIntroduce
 public abstract class Person {
     private String firstName;
     private String lastName;
@@ -15,6 +16,7 @@ public abstract class Person {
         this.age = 0;
     }
 
+    //getter & setter
     public String getName(){
         return this.firstName + " " + this.lastName;
     }
@@ -24,6 +26,7 @@ public abstract class Person {
     }
     
     public void setFirstName(String newFirstName) {
+        //data validation
         if (newFirstName == null) {
             throw new IllegalArgumentException("Name can't be NULL!");
         }
@@ -35,6 +38,7 @@ public abstract class Person {
     }
     
     public void setLastName(String newLastName) {
+        //data validation
         if (newLastName == null) {
             throw new IllegalArgumentException("Name can't be NULL!");
         }
@@ -46,6 +50,7 @@ public abstract class Person {
     }
 
     public void setAge(int newAge) {
+        //data validation
         if (newAge <= 0 || newAge >100) {
             throw new IllegalArgumentException("Age out of range!");
         }
@@ -53,5 +58,6 @@ public abstract class Person {
         System.out.printf("Changing age into: %d", newAge);
     }  
 
+    //the abstract method to print out the information about the person
     public abstract void selfIntroduce();
 }
